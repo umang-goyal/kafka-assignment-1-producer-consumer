@@ -1,0 +1,44 @@
+[
+  {
+    "id": 0,
+    "name": "Poole Contreras",
+    "age": 21,
+    "address": "Idaho"
+  },
+  {
+    "id": 1,
+    "name": "Hodge Donovan",
+    "age": 31,
+    "address": "Vermont"
+  },
+  {
+    "id": 2,
+    "name": "Sarah Carter",
+    "age": 22,
+    "address": "South Carolina"
+  },
+  {
+    "id": 3,
+    "name": "Martha Sellers",
+    "age": 20,
+    "address": "New Mexico"
+  },
+  {
+    "id": 4,
+    "name": "Jennifer West",
+    "age": 28,
+    "address": "Nevada"
+  },
+  {
+    "id": 5,
+    "name": "Hilary Noble",
+    "age": 29,
+    "address": "Arizona"
+  },
+  {
+    "id": 6,
+    "name": "Faye Cummings",
+    "age": 26,
+    "address": "Minnesota"
+  }
+]
