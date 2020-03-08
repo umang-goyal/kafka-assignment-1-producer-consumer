@@ -2,11 +2,11 @@ package com.knoldus
 
 import net.liftweb.json.DefaultFormats
 
-import scala.io.Source
+import scala.io.{BufferedSource, Source}
 
 object UserData {
-
-  val jsonData: String = Source.fromFile("./src/main/resources/json.txt").mkString
+  val bufferedSource: BufferedSource = Source.fromFile("./src/main/resources/json.txt")
+  val jsonData: String = bufferedSource.mkString
   implicit val formats: DefaultFormats.type = DefaultFormats
 
   def getDeserialize: List[User] = {
@@ -15,4 +15,5 @@ object UserData {
       userData.extract[User]
     }
   }
+  bufferedSource.close()
 }

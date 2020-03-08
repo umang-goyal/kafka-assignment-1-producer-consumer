@@ -18,22 +18,22 @@ object Producer {
     properties.put("acks", "all")
     val producer = new KafkaProducer[String, User](properties)
     try {
-      def sendUser(users: List[User], count: Int) {
+      def sendUser(users: List[User]) {
         users match {
           case user :: rest =>
-            producer.send(new ProducerRecord[String, User](topic, count.toString, user), (metadata: RecordMetadata, exception: Exception) => {
-                ReportLog.write(user, metadata, exception)
-            })
-            sendUser(rest, count + 1)
-          case user :: Nil => producer.send(new ProducerRecord[String, User](topic, count.toString, user), (metadata: RecordMetadata, exception: Exception) => {
+            producer.send(new ProducerRecord[String, User](topic, user.id.toString, user), (metadata: RecordMetadata, exception: Exception) => {
               ReportLog.write(user, metadata, exception)
-
-          })
+            })
+            sendUser(rest)
+          case user :: Nil => producer.send(new ProducerRecord[String, User](topic, user.id.toString, user),
+            (metadata: RecordMetadata, exception: Exception) => {
+              ReportLog.write(user, metadata, exception)
+            })
         }
-        sendUser(UserData.getDeserialize, 0)
+        sendUser(UserData.getDeserialize)
       }
 
-      sendUser(UserData.getDeserialize, 0)
+      sendUser(UserData.getDeserialize)
     }
     catch {
       case e: Exception => e.printStackTrace()
